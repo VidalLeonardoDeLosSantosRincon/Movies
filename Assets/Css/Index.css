@@ -1,0 +1,10 @@
+﻿.ctr-home {
+    height: 100%;
+    width: 100%;
+    background: white;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

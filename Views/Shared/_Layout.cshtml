@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - AppMovie</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!--<link href="~/Assets/Css/Layout.css" rel="stylesheet" />-->
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background: white;
+
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .header {
+            background: black;
+            height: 60px;
+            width: 100%;
+            margin: 0 0 0 0;
+        }
+
+        .ctr-main {
+            height: auto;
+            width: 100%;
+            /*background: #122233;*/
+            background:rgba(0,0,0,0.06);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .footer {
+            background: black;
+            height: 100px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+            .footer ul {
+                list-style: none;
+                background: transparent;
+                height: 50px;
+                width: 15%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+                .footer ul li {
+                    display: inline-block;
+                    padding: 5px 10px;
+                }
+
+                    .footer ul li .icons {
+                        height: 50px;
+                        width: 50px;
+                    }
+
+
+
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+       
+    </header>
+
+    <div class="ctr-main">
+        @RenderBody()
+    </div>
+
+    <footer class="footer">
+        <ul>
+            <a  target="_blank" href="https://www.youtube.com/channel/UCyxVG-mUpXT3UQM4cnQWUTw/">
+                <li>
+                    <img class="icons" src="~/Assets/Images/youtube.png" alt="youtube_icon" />
+                </li>
+            </a>
+
+            @*<a target="_blank" href="https://www.linkedin.com/in/vidal-leonardo-de-los-santos-rincon-314644185/">
+                <li>
+                    <img class="icons" src="~/Assets/Images/linkedin.png" alt="linkedin_icon" />
+                </li>
+            </a>*@
+
+            <a target="_blank" href="https://github.com/VidalLeonardoDeLosSantosRincon">
+                <li>
+                    <img class="icons" src="~/Assets/Images/github.png" alt="github_icon" />
+                </li>
+            </a>
+        </ul>
+
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

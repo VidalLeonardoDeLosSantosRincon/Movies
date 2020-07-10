@@ -1,0 +1,27 @@
+﻿@model AppMovies.Models.Movie
+
+@{
+    ViewBag.Title = "Home";
+}
+<!--<link href="~/Assets/Css/Index.css" rel="stylesheet" />-->
+
+<style>
+    .ctr-home {
+        height: 100%;
+        width: 100%;
+        background: white;
+        padding: 10px;
+        box-sizing: border-box;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<div class="ctr-home">
+    
+    @{
+        Html.RenderPartial("_PlayVideo",Model);
+    }
+</div>

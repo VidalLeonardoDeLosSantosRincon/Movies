@@ -1,0 +1,64 @@
+﻿
+@{
+}
+
+<style>
+    .ctr-search{
+        background:white;
+        width:100%;
+        height:60px;
+        padding:5px;
+        box-sizing:border-box;
+
+        display:flex;
+        justify-content:center;
+        align-items:flex-end;
+    }
+
+        .ctr-search form {
+            background: white;
+            padding: 5px;
+            width: 50%;
+            box-sizing: border-box;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    .ctr-search form input[name="search"] {
+            width: 500px;
+            height: 30px;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 3px 0 0 3px;
+            padding: 0 5px;
+            box-sizing: border-box;
+            background: white;
+            outline-color: dodgerblue;
+            color: gray;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+    .ctr-search form input[type="submit"] {
+            height: 30px;
+            border: none;
+            border-radius: 0 3px 3px 0;
+            padding: 5px 10px;
+            box-sizing: border-box;
+            background: dodgerblue;
+            outline: none;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+</style>
+
+<div class="ctr-search">
+    @using (Html.BeginForm("Search", "Movies", FormMethod.Get))
+    {
+        <input type="text" name="search" id="search" placeholder="Movie's name"  value="@ViewData["MySearch"]" required/>
+        <input type="submit"  value="Buscar"/>
+
+    }
+</div>

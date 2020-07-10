@@ -1,0 +1,166 @@
+﻿@using AppMovies.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<style>
+
+    *{
+        padding:0;
+        margin:0;
+    }
+    .ctr-login{
+        background:white;
+        height:100vh;
+        padding:50px;
+        box-sizing:border-box;
+
+        display:flex;
+        justify-content:space-around;
+    }
+
+    .ctr-login img{
+        width:600px;
+        height:480px;
+    }
+
+    .ctr-login #loginForm{
+        background:white;
+        height:500px;
+        width:450px;
+        padding:25px;
+        box-sizing:border-box;
+        box-shadow:5px 5px 5px rgba(0,0,0,0.2);
+        border:1px solid rgba(0,0,0,0.1);
+        border-radius:3px;
+
+
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        align-items:center;
+    }
+
+        .ctr-login #loginForm form {
+            background:white;
+            width:100%;
+            height:100%;
+            padding:10px;
+            box-sizing:border-box;
+
+            display:flex;
+            flex-direction:column;
+            justify-content:flex-end;
+            align-items:flex-start;
+        }
+
+
+        .ctr-login #loginForm form div{
+            background:white;
+            width:100%;
+            height:60px;
+            margin:5px;
+            padding:5px;
+            box-sizing:border-box;
+
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            align-items:center;
+        }
+
+
+            .ctr-login #loginForm form div label {
+                background:white;
+                width:120px;
+                height:30px;
+                padding:5px;
+                box-sizing:border-box;
+                text-align:center;
+            }
+
+            .ctr-login #loginForm form div .fields {
+                height: 35px;
+                border: 2px solid dodgerblue;
+                border-radius: 3px;
+                padding: 5px;
+                box-sizing: border-box;
+                width:100%;
+                outline:none;
+            }
+
+
+        .ctr-login #loginForm form h4, h2 {
+            color: gray;
+        }
+
+    
+</style>
+
+<div class="ctr-login">
+    @*<div class="col-md-8">*@
+    <section id="loginForm">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <h2>@ViewBag.Title</h2>
+            <h4>Use a local account to log in.</h4>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            
+            <div style="background:white; height:30px; justify-content:flex-start;">
+                @Html.LabelFor(m => m.Email, new { @class = "", style="padding:1px; height:auto; margin:0 0 0 45px; text-align:left;" })
+            </div>
+
+            <div>
+                @Html.TextBoxFor(m => m.Email, new { @class = "fields", })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div style="background:white; height:30px; justify-content:flex-start;">
+                @Html.LabelFor(m => m.Password, new { @class = "", style = "padding:1px; height:auto; margin:0 0 0 45px; text-align:left;" })
+            </div>
+            <div>
+                @Html.PasswordFor(m => m.Password, new { @class = "fields" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                <span>
+                    @Html.LabelFor(m => m.RememberMe)
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                </span>
+            </div>
+
+            <div>
+                <span>
+                    <input type="submit" value="Log in" class="btn" />
+                    <a href="/Movies/" class="btn back">Go Back</a>
+                </span>
+            </div>
+
+            <div>
+                <p class="go_to_register">
+                    @Html.ActionLink("Register as a new user", "Register")
+                </p>
+            </div>
+
+            @* Enable this once you have account confirmation enabled for password reset functionality
+            <p>
+                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+            </p>*@
+        }
+    </section>
+    @*</div>*@
+    @*<div class="col-md-4">
+        <section id="socialLoginForm">
+           @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </div>*@
+    <img src="~/Assets/Images/login.png" alt="Alternate Text" />
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

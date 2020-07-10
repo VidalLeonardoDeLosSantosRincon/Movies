@@ -1,0 +1,232 @@
+﻿@model AppMovies.Models.Movie
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>@ViewBag.Image</h4>
+<style>
+
+    .ctr-create_movie {
+        background: white;
+        height: 100%;
+        width: 100%;
+        padding: 10px 25px;
+        box-sizing:border-box;
+
+
+        display:flex;
+        flex-direction:row;
+        justify-content:space-around;
+        align-items:flex-start;
+    }
+
+    .form-box{
+        background:white;
+        width:600px;
+        padding:25px;
+        /*border:3px solid dodgerblue;*/
+        border-radius:5px;
+        border:1px solid rgba(0,0,0,0.1);
+        box-sizing:border-box;
+        box-shadow:5px 10px 10px rgba(0,0,0,0.2);
+        /*align-self:center;*/
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin:15px 5px;
+    }
+
+    .form-box .form-title{
+        font-size:25px;
+        font-weight:300;
+    }
+
+    .form-box input {
+        border:2px solid dodgerblue;
+        border-radius:3px;
+        
+    }
+
+    label{
+        background:white;
+        padding:2px;
+        box-sizing:border-box;
+        width:auto;
+
+    }
+
+        .form-box textarea {
+            resize: none;
+            border: 2px solid dodgerblue;
+            border-radius: 3px;
+        }
+
+    .category-check {
+        height: 12px;
+        width: 12px;
+
+    }
+
+    .create_logo {
+        height: 600px;
+        width: 700px;
+    }
+
+    
+    [type="file"]:focus{
+        box-shadow:2px 2px 5px lightblue;
+        
+    }
+</style>
+
+
+
+
+<div class="ctr-create_movie">
+
+
+    <div class="form-box">
+
+        @using (Html.BeginForm("Create", "Movies", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4 class="form-title">Create Movie</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", rows = "4", cols = "10" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" accept=".jpg,.png,.jpeg" id="ImageFile" name="ImageFile" required />
+                    @*@Html.EditorFor(model => model.ImagePath, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.VideoPath, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" accept=".mp4,.webm,.ogv" id="VideoFile" name="VideoFile" required />
+                    @*@Html.EditorFor(model => model.VideoPath, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.VideoPath, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-10" style="
+                        background-color:white;
+                        padding:10px 25px;
+                        box-sizing:border-box;
+                        width:100%;
+                        color:dodgerblue;
+
+                            ">
+                    @{
+                            int counter = 1;
+                            foreach (var category in ViewBag.Categories)
+                            {
+                                var _category = (AppMovies.Models.Category)category;
+
+                                if ((counter-1) % 5 == 0 && counter >1)
+                                {
+                        <br />
+                                }
+                                counter++;
+
+                        <label for="@_category.Name">@_category.Name</label>
+                        <input class="category-check" type="checkbox" id="@_category.Name" name="category" value="@_category.Id" />
+
+                            }
+                    }
+                </div>
+            </div>
+
+            <hr/>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add a movie" class="btn btn-primary" />
+                    @*<input type="button" value="Add Movie" onclick="setForm()" />*@
+
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+
+                </div>
+            </div>
+        </div>
+        }
+
+    </div>
+
+
+
+    @*<script>
+           /* const AddMovie = () => {
+                let xhr = new XMLHttpRequest();
+
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4, xhr.status === 200) {
+                        let res = Json.parse(xhr.responseText);
+                        console.log(res);
+                    }
+                }
+                xhr.open("POST","Movies/Create",true);
+
+
+            };*/
+
+            function setForm(){
+                let formData = new FormData();
+                let formulario = document.forms[0];
+                let title = formulario.elements.Title.value;
+                let description = formulario.elements.Description.value;
+                let image = formulario.elements.ImageFile.files[0];
+                let video = formulario.elements.VideoFile.files[0];
+
+                formData.append("Title", title);
+                formData.append("Description", description);
+                formData.append("ImageFile", image);
+                formData.append("VideoFile", video);
+
+                let xhr = new XMLHttpRequest();
+
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4, xhr.status === 200) {
+                        let res = Json.parse(xhr.responseText);
+                        console.log(res);
+                    }
+                }
+                xhr.open("POST", "/Movies/Create",true);
+                xhr.send(formData);
+
+                xhr.onprogress = function (event) {
+                   console.log(event.loaded);
+                   console.log(event.total);
+                }
+
+            }
+        </script>*@
+
+    <img class="create_logo" src="~/Assets/Images/create_movie.png" alt="Alternate Text" />
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+}
+
+<style>
+    .ctr-categories{
+        background:white;
+        width:100%;
+        padding:0 25px;
+        box-sizing:border-box;
+        height:100px;
+
+        display:flex;
+        justify-content:space-around;
+        align-items:center;
+    }
+
+    .ctr-categories .categories-box{
+        background:white;
+        padding:10px;
+        box-sizing:border-box;
+    }
+</style>
+
+<div class="ctr-categories">
+    @{
+        var db = new AppMovies.Models.ApplicationDbContext();
+        var categorias = db.Categories.ToList();
+
+    <div class="categories-box">
+        <a href="/Movies">
+            <span class="btn btn-success">
+                Todas las categorias
+            </span>
+        </a>
+        @foreach (var categoria in categorias)
+        {
+            <a href="/Movies?categoria=@categoria.Name&C=@categoria.Id">
+                <span class="btn btn-primary">
+                    @categoria.Name
+                </span>
+            </a>
+        }
+    </div>
+        
+    }
+</div>
+

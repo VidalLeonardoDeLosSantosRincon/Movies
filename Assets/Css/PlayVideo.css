@@ -1,0 +1,90 @@
+﻿
+.ctr-video {
+    padding: 10px 25px;
+    background: transparent;
+    box-sizing:border-box;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-image:url("..@Url.Content("~/Media/Imgs/Alan Walker - Alone.jpg")");*/
+}
+
+
+.ctr-player {
+    width: 60%;
+    height: auto;
+    background: transparent;
+    padding: 25px;
+    box-sizing: border-box;
+    align-self:flex-start;
+}
+
+
+    .ctr-player .video-box {
+        background: black;
+        width: 100%;
+        height: 60%;
+        padding: 10px 1px;
+        border-radius: 3px;
+    }
+
+        .ctr-player .video-box .player {
+            width: 100%;
+            height: 100%;
+            outline: none;
+            padding: 0;
+        }
+
+    .ctr-player .video-title {
+        color:white;
+        padding: 0 10px;
+        font-weight: 300;
+        font-size: 20px;
+    }
+
+    .ctr-player details {
+        color: white;
+        outline: none;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+        .ctr-player details[open] {
+            background: rgba(0,0,0,0.4);
+            padding: 15px;
+            border-radius: 3px;
+        }
+
+
+        .ctr-player details summary {
+            color: dodgerblue;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+        }
+
+            .ctr-player details summary::-webkit-details-marker {
+                display: none;
+            }
+
+
+        .ctr-player details .description-box {
+            background: transparent;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .ctr-player details .description-box img {
+                width: 150px;
+                height: 170px;
+                margin: 0 10px 0 0;
+            }
+
+            .ctr-player details .description-box div {
+                align-self: flex-start;
+            }
